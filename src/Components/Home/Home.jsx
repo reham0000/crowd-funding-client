@@ -6,8 +6,9 @@ import Payment from "../Payment/Payment";
 const Home = () => {
     return (
         <div>
-            <Payment></Payment>
+            
             <Banner></Banner>
+            <Payment></Payment>
             <About></About>
         </div>
     );

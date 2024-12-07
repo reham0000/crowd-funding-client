@@ -6,7 +6,7 @@ import b4 from '../../assets/b4.jpg'
 
 const Banner = () => {
   return (
-    <div className="mt-10">
+    <div>
         <Bounce>
       <div className="carousel w-4/4 h-[500px] ">
         <div id="slide1" className="carousel-item relative w-full">
