@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/banner logo.jpg";
 import "./Navbar.css";
+import { Bounce } from "react-awesome-reveal";
 
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-[#2ec4b6]">
+      <div className="navbar bg-[#2ec4b6] px-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,15 +44,17 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex items-center gap-10 p-5">
+            <Bounce>
             <NavLink to="/">Home</NavLink>
 
-            <NavLink to="/allcampaign">All Campaign</NavLink>
+<NavLink to="/allcampaign">All Campaign</NavLink>
 
-            <NavLink to="/newcampaign">New Campaign</NavLink>
+<NavLink to="/newcampaign">New Campaign</NavLink>
 
-            <NavLink to="/mycampaign">My Campaign</NavLink>
+<NavLink to="/mycampaign">My Campaign</NavLink>
 
-            <NavLink to="/mydonation">My Donations</NavLink>
+<NavLink to="/mydonation">My Donations</NavLink>
+            </Bounce>
           </ul>
         </div>
         <div className="navbar-end">

@@ -20,7 +20,7 @@ const Payment = () => {
         className=" mt-5 text-center text-5xl font-semibold bg-[#2ec4b6] text-white mx-auto lg:w-[600px] p-3 rounded-xl"
         data-aos="fade-up-right"
       >
-        {/* Online Payment */}  <span className="text-white">{text}</span> <Cursor></Cursor>
+          <span className="text-white">{text}</span> <Cursor></Cursor>
       </h1>
       <Marquee pauseOnHover={true} speed={200}>
         <div className="mt-10 lg:w-36 lg:h-36 w-16 h-16 gap-16 flex justify-start items-center">
