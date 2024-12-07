@@ -1,14 +1,11 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Link,  useLoaderData,  useParams } from "react-router-dom";
-
-const Card = ({ fund  }) => {
-  const { title, description, _id, thumbnail } = fund;
-    
-
-  return (
-    <>
-    
-      <div className="">
+const AllCard = ({fund}) => {
+    const { title, description, _id, thumbnail } = fund;
+    return (
+        <>
+            <div className="">
         <div className="card bg-base-100 w-96 h-96 mx-auto mb-10 shadow-xl ">
           <figure className="px-10 pt-10">
             <img src={thumbnail} alt="Shoes" className="rounded-xl" />
@@ -24,8 +21,8 @@ const Card = ({ fund  }) => {
           </div>
         </div>
       </div>
-    </>
-  );
+        </>
+    );
 };
 
-export default Card;
+export default AllCard;
