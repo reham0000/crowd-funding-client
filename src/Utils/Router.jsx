@@ -40,8 +40,9 @@ const router = createBrowserRouter([
         element: <MyDonation></MyDonation>,
       },
       {
-        path: "/details",
-        element: <CardDetails></CardDetails>
+        path: "/details/:id",
+        element: <CardDetails></CardDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/fund/${params.id}`),
       },
       {
         path: "*",
