@@ -1,12 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Bounce } from "react-awesome-reveal";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import google from "../../assets/icons8-google-logo-48.png";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
-  const { handleGoogleLogin, handleSignin, handleLogout} = useContext(AuthContext);
-  const [error, setError] = useState('');
+  const { handleGoogleLogin, handleSignin, user } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,12 +19,28 @@ const SignIn = () => {
     const password = e.target.password.value;
 
     handleSignin(email, password)
-    .then(res => {})
-    .catch(error => {
+      .then((res) => {
+        navigate(location.state.from);
+        if (user) {
+          Swal.fire({
+            title: "Good job!",
+            text: "Login Successful!",
+            icon: "success",
+          });
+        }
+      })
+      .catch((error) => {
         setError(error.message);
-    })
-
+      });
   };
+
+  // const googleLogin = () => {
+  //   handleGoogleLogin()
+  //   .then(res => {
+  //     navigate (location.state.from)
+  //   })
+  // }
+
   return (
     <>
       <Bounce>
@@ -61,21 +81,23 @@ const SignIn = () => {
                     href="#"
                     className="label-text-alt link link-hover"
                   >
-                    New in Website? Please <span className="text-red-500">Register</span>
+                    New in Website? Please{" "}
+                    <span className="text-red-500">Register</span>
                   </Link>
                 </label>
               </div>
               <div className="form-control ">
                 <button className="btn btn-primary">Login</button>
+
                 {error && <p className="text-red-500">{error}</p>}
               </div>
               <button
                 onClick={handleGoogleLogin}
-                className="bg-transparent  mt-[-10px]"
+                className="bg-transparent  gap-5  mt-[-10px]"
               >
                 <img className="w-10 mx-auto" src={google} alt="" />
               </button>
-              <button onClick={handleLogout}>logout</button>
+              {/* <button onClick={handleLogout}>logout</button> */}
             </form>
           </div>
         </div>

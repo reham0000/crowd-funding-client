@@ -2,8 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/banner logo.jpg";
 import "./Navbar.css";
 import { Bounce } from "react-awesome-reveal";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, handleLogout } = useContext(AuthContext);
+
   return (
     <>
       <div className="navbar bg-[#2ec4b6] px-10">
@@ -58,9 +62,16 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to='/signin'>
-            <button className="btn">Login</button>
-          </Link>
+          {user?.email ? (
+            <div className="flex items-center gap-5">
+              <img className=" w-14 h-14 rounded-full " src={user.photoURL} alt="" />
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          ) : (
+            <Link to="/signin">
+              <button className="btn">Login</button>
+            </Link>
+          )}
         </div>
       </div>
     </>

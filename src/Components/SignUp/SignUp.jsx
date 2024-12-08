@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Bounce } from "react-awesome-reveal";
 
 const SignUp = () => {
   const { createUser, manageProfile } = useContext(AuthContext);
   const [error, setError] = useState('')
+ 
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ const SignUp = () => {
 
     createUser(email, password)
     .then(result => {
-        console.log(result.user);
+      
         manageProfile(name, photo)
 
         const newUser = {name, email, photo}
@@ -49,7 +50,7 @@ const SignUp = () => {
 
         Swal.fire({
             title: "Good job!",
-            text: "You clicked the button!",
+            text: "Register Successful!",
             icon: "success"
           });
     })
@@ -118,7 +119,7 @@ const SignUp = () => {
                 />
                 <label className="label">
                   <Link to='/signin' href="#" className="label-text-alt link link-hover">
-                    Login
+                    Alreadu have an account? please <span className="text-red-500">Login</span>
                   </Link>
                 </label>
               </div>
