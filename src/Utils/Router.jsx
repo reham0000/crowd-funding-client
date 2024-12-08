@@ -10,6 +10,7 @@ import MyDonation from "../Components/MyDonation/MyDonation";
 import CardDetails from "../Components/CardDetails/CardDetails";
 import SignUp from "../Components/SignUp/SignUp";
 import SignIn from "../Components/SignIn/SignIn";
+import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
 
 const router = createBrowserRouter([
   {
@@ -32,15 +33,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/newcampaign",
-        element: <NewCampaign></NewCampaign>,
+        element: <PrivetRoute>
+          <NewCampaign></NewCampaign>
+        </PrivetRoute>,
       },
       {
         path: "/mycampaign",
-        element: <MyCampaign></MyCampaign>,
+        element: <PrivetRoute>
+          <MyCampaign></MyCampaign>
+        </PrivetRoute>,
       },
       {
         path: "/mydonation",
-        element: <MyDonation></MyDonation>,
+        element: <PrivetRoute>
+          <MyDonation></MyDonation>
+        </PrivetRoute>,
       },
       {
         path: "/details/:id",

@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { Bounce } from "react-awesome-reveal";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, manageProfile } = useContext(AuthContext);
   const [error, setError] = useState('')
 
   const handleSignUp = (e) => {
@@ -31,7 +33,20 @@ const SignUp = () => {
 
     createUser(email, password)
     .then(result => {
-        console.log(result.user)
+        console.log(result.user);
+        manageProfile(name, photo)
+
+        const newUser = {name, email, photo}
+        fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(newUser)
+        })
+        .then(res => res.json())
+        .then(data => console.log('user created', data))
+
         Swal.fire({
             title: "Good job!",
             text: "You clicked the button!",
@@ -45,6 +60,11 @@ const SignUp = () => {
 
   return (
     <>
+    <Bounce>
+        <div className="text-4xl font-semibold text-center bg-[#2ec4b6] p-3 w-96 mt-10 mx-auto rounded-3xl">
+          Register
+        </div>
+      </Bounce>
       <div className="hero ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="card bg-base-100 w-96 mt-16 shrink-0 shadow-2xl">
@@ -97,9 +117,9 @@ const SignUp = () => {
                   required
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
+                  <Link to='/signin' href="#" className="label-text-alt link link-hover">
+                    Login
+                  </Link>
                 </label>
               </div>
               <div className="form-control mt-6">
