@@ -8,6 +8,8 @@ import NewCampaign from "../Components/NewCampaign/NewCampaign";
 import MyCampaign from "../Components/MyCampaign/MyCampaign";
 import MyDonation from "../Components/MyDonation/MyDonation";
 import CardDetails from "../Components/CardDetails/CardDetails";
+import SignUp from "../Components/SignUp/SignUp";
+import SignIn from "../Components/SignIn/SignIn";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <CardDetails></CardDetails>,
         loader: ({params}) => fetch(`http://localhost:5000/fund/${params.id}`),
+      },
+      {
+        path: "/signup",
+        element: <SignUp></SignUp>
+      },
+      {
+        path: "/signin",
+        element: <SignIn></SignIn>
       },
       {
         path: "*",

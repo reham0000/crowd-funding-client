@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/banner logo.jpg";
 import "./Navbar.css";
 import { Bounce } from "react-awesome-reveal";
@@ -45,20 +45,22 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 flex items-center gap-10 p-5">
             <Bounce>
-            <NavLink to="/">Home</NavLink>
+              <NavLink to="/">Home</NavLink>
 
-<NavLink to="/allcampaign">All Campaign</NavLink>
+              <NavLink to="/allcampaign">All Campaign</NavLink>
 
-<NavLink to="/newcampaign">New Campaign</NavLink>
+              <NavLink to="/newcampaign">New Campaign</NavLink>
 
-<NavLink to="/mycampaign">My Campaign</NavLink>
+              <NavLink to="/mycampaign">My Campaign</NavLink>
 
-<NavLink to="/mydonation">My Donations</NavLink>
+              <NavLink to="/mydonation">My Donations</NavLink>
             </Bounce>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Login</a>
+          <Link to='/signin'>
+            <button className="btn">Login</button>
+          </Link>
         </div>
       </div>
     </>
