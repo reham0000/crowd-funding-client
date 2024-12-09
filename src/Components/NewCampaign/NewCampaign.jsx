@@ -20,7 +20,7 @@ const NewCampaign = () => {
 
         const newFund = {thumbnail, title, type, description, minDonation, deadline, name, email};
 
-        console.log(newFund);
+       
 
         fetch('http://localhost:5000/fund', {
             method: 'POST',

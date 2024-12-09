@@ -20,13 +20,15 @@ const SignIn = () => {
 
     handleSignin(email, password)
       .then((res) => {
-        navigate(location.state.from);
-        if (user) {
+        
+        if (res.user) {
           Swal.fire({
             title: "Good job!",
             text: "Login Successful!",
             icon: "success",
           });
+          navigate(location.state?.from || '/');
+          
         }
       })
       .catch((error) => {

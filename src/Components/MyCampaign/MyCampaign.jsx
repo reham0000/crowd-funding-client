@@ -1,9 +1,15 @@
-import React from 'react';
+
+import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 const MyCampaign = () => {
+
+    const loadedUsers = useLoaderData();
+    const [users, setUsers] = useState(loadedUsers);
+
     return (
         <div>
-            My Campaign
+            My Campaign: {users.length}
         </div>
     );
 };

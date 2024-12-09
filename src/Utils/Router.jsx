@@ -36,12 +36,14 @@ const router = createBrowserRouter([
         element: <PrivetRoute>
           <NewCampaign></NewCampaign>
         </PrivetRoute>,
+        
       },
       {
         path: "/mycampaign",
         element: <PrivetRoute>
           <MyCampaign></MyCampaign>
         </PrivetRoute>,
+        loader: () => fetch('http://localhost:5000/users')
       },
       {
         path: "/mydonation",
