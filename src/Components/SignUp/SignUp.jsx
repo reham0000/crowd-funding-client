@@ -7,6 +7,9 @@ import { Bounce } from "react-awesome-reveal";
 const SignUp = () => {
   const { createUser, manageProfile } = useContext(AuthContext);
   const [error, setError] = useState('')
+
+  const location = useLocation();
+  const navigate = useNavigate();
  
 
   const handleSignUp = (e) => {
@@ -34,7 +37,7 @@ const SignUp = () => {
 
     createUser(email, password)
     .then(result => {
-      
+      navigate(location.state?.from || '/');
         manageProfile(name, photo)
 
         const newUser = {name, email, photo}

@@ -33,42 +33,48 @@ const router = createBrowserRouter([
       },
       {
         path: "/newcampaign",
-        element: <PrivetRoute>
-          <NewCampaign></NewCampaign>
-        </PrivetRoute>,
-        
+        element: (
+          <PrivetRoute>
+            <NewCampaign></NewCampaign>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/mycampaign",
-        element: <PrivetRoute>
-          <MyCampaign></MyCampaign>
-        </PrivetRoute>,
-        loader: () => fetch('http://localhost:5000/users')
+        element: (
+          <PrivetRoute>
+            <MyCampaign></MyCampaign>
+          </PrivetRoute>
+        ),
+        // loader: () => fetch("http://localhost:5000/users"),
       },
       {
         path: "/mydonation",
-        element: <PrivetRoute>
-          <MyDonation></MyDonation>
-        </PrivetRoute>,
+        element: (
+          <PrivetRoute>
+            <MyDonation></MyDonation>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/details/:id",
         element: <CardDetails></CardDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/fund/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/fund/${params.id}`),
       },
       {
         path: "/signup",
-        element: <SignUp></SignUp>
+        element: <SignUp></SignUp>,
       },
       {
         path: "/signin",
-        element: <SignIn></SignIn>
-      },
-      {
-        path: "*",
-        element: <Error></Error>,
+        element: <SignIn></SignIn>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error></Error>,
   },
 ]);
 

@@ -8,7 +8,7 @@ import Dark from "../Theme/Dark";
 const Home = () => {
   return (
     <div>
-        <Dark></Dark>
+        {/* <Dark></Dark> */}
       <Banner></Banner>
       <Payment></Payment>
       <CampaignCard></CampaignCard>

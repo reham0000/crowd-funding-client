@@ -2,7 +2,7 @@
 import { Link,  useLoaderData,  useParams } from "react-router-dom";
 
 const Card = ({ fund  }) => {
-  const { title, description, _id, thumbnail } = fund;
+  const { title, description, _id, thumbnail, minDonation } = fund;
     
 
   return (
@@ -15,7 +15,8 @@ const Card = ({ fund  }) => {
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title">{title}</h2>
-            <p>{description}</p>
+            <p>{description.slice(0,50)}....</p>
+            <p><span className="font-semibold">Donation Amount:</span> {minDonation} tk</p>
             <div className="card-actions mt-5">
               <Link to={`/details/${_id}`}>
                 <button className="btn btn-primary">See More</button>
