@@ -12,6 +12,7 @@ import SignUp from "../Components/SignUp/SignUp";
 import SignIn from "../Components/SignIn/SignIn";
 import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
             <MyCampaign></MyCampaign>
           </PrivetRoute>
         ),
-        // loader: () => fetch("http://localhost:5000/users"),
+        loader: () => fetch("http://localhost:5000/myfunds"),
       },
       {
         path: "/mydonation",
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
         path: "/signin",
         element: <SignIn></SignIn>,
       },
+      
     ],
   },
   {

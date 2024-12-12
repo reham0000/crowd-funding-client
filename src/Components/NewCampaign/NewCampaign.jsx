@@ -1,47 +1,57 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Slide } from "react-awesome-reveal";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const NewCampaign = () => {
 
-    const handleAddFund = event => {
-        event.preventDefault();
+  const {user} = useContext(AuthContext);
+  
+  const handleAddFund = (event) => {
+    event.preventDefault();
 
-        const form = event.target;
+    const form = event.target;
 
-        const thumbnail = form.thumbnail.value;
-        const title = form.title.value;
-        const type = form.type.value;
-        const description = form.description.value;
-        const minDonation = form.minDonation.value;
-        const deadline = form.deadline.value;
-        const name = form.name.value;
-        const email = form.email.value;
+    const thumbnail = form.thumbnail.value;
+    const title = form.title.value;
+    const type = form.type.value;
+    const description = form.description.value;
+    const minDonation = form.minDonation.value;
+    const deadline = form.deadline.value;
+    const name = form.name.value;
+    const email = form.email.value;
 
-        const newFund = {thumbnail, title, type, description, minDonation, deadline, name, email};
+    const newFund = {
+      thumbnail,
+      title,
+      type,
+      description,
+      minDonation,
+      deadline,
+      name,
+      email,
+    };
 
-       
-
-        fetch('http://localhost:5000/fund', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newFund)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.insertedId) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'User Added Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                  })
-            }
-        })
-    }
+    fetch("http://localhost:5000/fund", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newFund),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "User Added Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
+  };
 
   return (
     <>
@@ -152,8 +162,8 @@ const NewCampaign = () => {
                 <input
                   type="email"
                   name="email"
-                  //   value={formData.email}
-                  //   readOnly
+                    value={user.email}
+                    readOnly
                   className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor"
                 />
               </div>
@@ -165,16 +175,17 @@ const NewCampaign = () => {
                 <input
                   type="text"
                   name="name"
-                  //   value={formData.name}
-                  //   readOnly
+                    value={user.displayName}
+                    readOnly
                   className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor"
                 />
               </div>
               {/* Submit Button */}
               <div>
                 <button
+                  // onClick={handleAdd}
                   type="submit"
-                  className="w-full bg-purple-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-purple-700 transition duration-300"
+                  className="w-full bg-[#2ec4b6] text-white font-medium py-2 px-4 rounded-lg hover:bg-[#92df96] transition duration-300"
                 >
                   Add
                 </button>

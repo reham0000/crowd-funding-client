@@ -7,23 +7,18 @@ import { AuthContext } from "../Provider/AuthProvider";
 const CardDetails = () => {
   const data = useLoaderData();
 
-
   const { user } = useContext(AuthContext);
 
-  // const {email} = user;
-  // console.log(email);
-
-  
-
   const handleDonate = () => {
-    
     const newDonation = {
       email: user?.email,
       title: data.title,
       name: data.name,
       deadline: data.deadline,
       amount: data.minDonation,
+      image: data.thumbnail,
     };
+    console.log(newDonation);
 
     fetch("http://localhost:5000/donation", {
       method: "POST",
@@ -34,7 +29,6 @@ const CardDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data.insertedId);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
@@ -70,9 +64,9 @@ const CardDetails = () => {
           <h1>Amount: {data.minDonation}</h1>
           <h1>Type: {data.type}</h1>
           {/* <Link> */}
-            <button onClick={handleDonate} className="btn mt-5 bg-[#2ec4b6]">
-              Donate
-            </button>
+          <button onClick={handleDonate} className="btn mt-5 bg-[#2ec4b6]">
+            Donate
+          </button>
           {/* </Link> */}
         </div>
       </Bounce>
