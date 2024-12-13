@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { MdBrowserUpdated } from "react-icons/md";
 import { MdAutoDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 
 const MyCampaign = () => {
+  
   const myFunds = useLoaderData();
 
   const { user } = useContext(AuthContext);
@@ -59,8 +60,8 @@ const MyCampaign = () => {
         <h1 className="text-5xl font-semibold text-center pt-5">My Campaign</h1>
       </div>
 
-      <div  className="overflow-x-auto">
-        <table className="table table-zebra">
+      <div  className="overflow-x-auto p-10">
+        <table className="table table-zebra mt-10 ">
           {/* head */}
           <thead>
             <tr>
@@ -70,6 +71,8 @@ const MyCampaign = () => {
               <th>Amount</th>
               
               <th>Deadline</th>
+              <th>Update</th>
+              <th>Delete</th>
 
             </tr>
           </thead>
@@ -83,7 +86,7 @@ const MyCampaign = () => {
                 <td>{single.title}</td>
                 <td>{single.minDonation}</td>
                 <td>{single.deadline}</td>
-                <td className="text-2xl cursor-pointer"><MdBrowserUpdated></MdBrowserUpdated></td>
+                <td>  <Link to={`/update/${single._id}`} className="text-2xl cursor-pointer"><MdBrowserUpdated></MdBrowserUpdated></Link></td>
                 <td onClick={() => handleDelete (single._id)} className="text-2xl cursor-pointer"><MdAutoDelete></MdAutoDelete></td>
                 
               </tr>

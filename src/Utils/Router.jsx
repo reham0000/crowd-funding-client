@@ -11,6 +11,7 @@ import CardDetails from "../Components/CardDetails/CardDetails";
 import SignUp from "../Components/SignUp/SignUp";
 import SignIn from "../Components/SignIn/SignIn";
 import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
+import Update from "../Components/Update/Update";
 
 
 const router = createBrowserRouter([
@@ -71,6 +72,11 @@ const router = createBrowserRouter([
         path: "/signin",
         element: <SignIn></SignIn>,
       },
+      {
+        path: "/update/:id",
+        element: <Update></Update>,
+        loader: ({params}) => fetch(`http://localhost:5000/myfunds/${params.id}`)
+      }
       
     ],
   },
