@@ -10,7 +10,7 @@ const MyCampaign = () => {
   const myFunds = useLoaderData();
 
   const { user } = useContext(AuthContext);
-  // console.log(myFunds);
+ 
 
   
 
@@ -62,7 +62,7 @@ const MyCampaign = () => {
 
       <div  className="overflow-x-auto p-10">
         <table className="table table-zebra mt-10 ">
-          {/* head */}
+         
           <thead>
             <tr>
               <th> </th>
@@ -79,7 +79,7 @@ const MyCampaign = () => {
 
           {donation.map((single,idx) => (
             <tbody key={single._id}>
-              {/* row 1 */}
+            
               <tr>
                 <th>{idx+1}</th>
                 <td>{single.name}</td>

@@ -3,7 +3,7 @@ import AllCard from "../AllCard/AllCard";
 
 const AllCampaign = () => {
   const funds = useLoaderData();
-  // console.log(data);
+ 
 
   return (
     <>
