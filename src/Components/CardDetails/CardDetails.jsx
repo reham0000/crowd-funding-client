@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Bounce, Slide } from "react-awesome-reveal";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
@@ -8,6 +8,7 @@ const CardDetails = () => {
   const data = useLoaderData();
 
   const { user } = useContext(AuthContext);
+
 
   const handleDonate = () => {
     const newDonation = {
@@ -63,11 +64,10 @@ const CardDetails = () => {
           <h1>Email: {data.email}</h1>
           <h1>Amount: {data.minDonation}</h1>
           <h1>Type: {data.type}</h1>
-          {/* <Link> */}
+
           <button onClick={handleDonate} className="btn mt-5 bg-[#2ec4b6]">
             Donate
           </button>
-          {/* </Link> */}
         </div>
       </Bounce>
     </>
