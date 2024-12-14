@@ -9,10 +9,10 @@ const AllCampaign = () => {
   const sortByAmount = () => {
   
     const sortedData = funds?.sort((a, b) => Number(a.minDonation) - Number(b.minDonation));
-    console.log(sortedData);
+    
     setAmount(sortedData);
   };
-  console.log(amount);
+ 
 
   return (
     <>

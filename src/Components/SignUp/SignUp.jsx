@@ -19,7 +19,7 @@ const SignUp = () => {
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-    console.log(email, name, password, photo);
+    
 
     if(password.length < 6){
         setError('Password must contain at least six character')
@@ -41,7 +41,7 @@ const SignUp = () => {
         manageProfile(name, photo)
 
         const newUser = {name, email, photo}
-        fetch('http://localhost:5000/users',{
+        fetch('https://crowd-funding-server-kappa.vercel.app/users',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

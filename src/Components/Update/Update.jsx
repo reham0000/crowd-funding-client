@@ -38,7 +38,7 @@ const Update = () => {
         email,
       };
   
-      fetch(`http://localhost:5000/myfunds/${_id}`, {
+      fetch(`https://crowd-funding-server-kappa.vercel.app/myfunds/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -47,7 +47,7 @@ const Update = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          
           if (data.modifiedCount > 0) {
             Swal.fire({
               title: "Success!",

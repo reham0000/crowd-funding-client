@@ -19,9 +19,9 @@ const CardDetails = () => {
       amount: data.minDonation,
       image: data.thumbnail,
     };
-    console.log(newDonation);
+    
 
-    fetch("http://localhost:5000/donation", {
+    fetch("https://crowd-funding-server-kappa.vercel.app/donation", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -16,8 +16,7 @@ const MyCampaign = () => {
 
   const singleUser = myFunds.filter((d) => d?.email == user?.email);
   const [donation, setDonation] = useState(singleUser);
-  // setDonation(singleUser);
-  console.log(singleUser);
+  
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -32,12 +31,12 @@ const MyCampaign = () => {
       if (result.isConfirmed) {
        
 
-        fetch (`http://localhost:5000/myfunds/${id}`, {
+        fetch (`https://crowd-funding-server-kappa.vercel.app/myfunds/${id}`, {
           method: 'DELETE',
         })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          
           if(data.deletedCount) {
              Swal.fire({
           title: "Deleted!",

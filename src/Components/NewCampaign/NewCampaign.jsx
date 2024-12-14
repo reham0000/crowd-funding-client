@@ -32,7 +32,7 @@ const NewCampaign = () => {
       email,
     };
 
-    fetch("http://localhost:5000/fund", {
+    fetch("https://crowd-funding-server-kappa.vercel.app/fund", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,7 @@ const NewCampaign = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",

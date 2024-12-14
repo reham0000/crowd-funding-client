@@ -10,7 +10,7 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log(location);
+ 
 
   const handleLogin = (e) => {
     e.preventDefault();
