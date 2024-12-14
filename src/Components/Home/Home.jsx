@@ -5,12 +5,10 @@ import Dreams from "../Dreams/Dreams";
 import Footer from "../Footer/Footer";
 import Idea from "../Idea/Idea";
 import Payment from "../Payment/Payment";
-import Dark from "../Theme/Dark";
 
 const Home = () => {
   return (
     <div>
-        {/* <Dark></Dark> */}
       <Banner></Banner>
       <Payment></Payment>
       <CampaignCard></CampaignCard>
