@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Bounce, Slide } from "react-awesome-reveal";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -8,6 +8,10 @@ const CardDetails = () => {
   const data = useLoaderData();
 
   const { user } = useContext(AuthContext);
+  const [deadline, setDeadline] = useState(new Date (data.deadline));
+  
+const currentDate = new Date (new Date ().toDateString())
+// console.log(currentDate);
 
 
   const handleDonate = () => {
@@ -41,6 +45,8 @@ const CardDetails = () => {
       });
   };
 
+ 
+
   return (
     <>
       <Slide>
@@ -65,7 +71,7 @@ const CardDetails = () => {
           <h1>Amount: {data.minDonation}</h1>
           <h1>Type: {data.type}</h1>
 
-          <button onClick={handleDonate} className="btn mt-5 bg-[#2ec4b6]">
+          <button onClick={handleDonate} disabled={currentDate>=deadline} className="btn mt-5 bg-[#2ec4b6]">
             Donate
           </button>
         </div>
