@@ -45,7 +45,7 @@ const NewCampaign = () => {
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
-            text: "User Added Successfully",
+            text: "New Campaign Successfully",
             icon: "success",
             confirmButtonText: "Cool",
           });
@@ -70,8 +70,6 @@ const NewCampaign = () => {
                 <input
                   type="text"
                   name="thumbnail"
-                  //   value={formData.thumbnail}
-                  //   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   placeholder="Enter image URL"
                   required
@@ -85,8 +83,6 @@ const NewCampaign = () => {
                 <input
                   type="text"
                   name="title"
-                  //   value={formData.title}
-                  //   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   placeholder="Enter campaign title"
                   required
@@ -99,8 +95,6 @@ const NewCampaign = () => {
                 </label>
                 <select
                   name="type"
-                  //   value={formData.type}
-                  //   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 >
@@ -108,6 +102,9 @@ const NewCampaign = () => {
                   <option value="startup">Startup</option>
                   <option value="business">Business</option>
                   <option value="creative ideas">Creative Ideas</option>
+                  <option value="creative ideas">Flood Donation</option>
+                  <option value="creative ideas">Cloth Donation</option>
+                  <option value="creative ideas">Food Donation</option>
                 </select>
               </div>
               {/* Description */}
@@ -117,8 +114,6 @@ const NewCampaign = () => {
                 </label>
                 <textarea
                   name="description"
-                  //   value={formData.description}
-                  //   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   placeholder="Enter campaign description"
                   rows="4"
@@ -128,15 +123,13 @@ const NewCampaign = () => {
               {/* Minimum Donation */}
               <div>
                 <label className="block text-gray-600 font-medium mb-1">
-                  Minimum Donation Amount
+                  Donation Item 
                 </label>
                 <input
-                  type="number"
+                  // type="number"
                   name="minDonation"
-                  //   value={formData.minDonation}
-                  //   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter minimum donation amount"
+                  placeholder="Enter donation Item"
                   required
                 />
               </div>
@@ -148,8 +141,6 @@ const NewCampaign = () => {
                 <input
                   type="date"
                   name="deadline"
-                  //   value={formData.deadline}
-                  //   onChange={handleChange}
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 />
@@ -183,7 +174,6 @@ const NewCampaign = () => {
               {/* Submit Button */}
               <div>
                 <button
-                  // onClick={handleAdd}
                   type="submit"
                   className="w-full bg-[#2ec4b6] text-white font-medium py-2 px-4 rounded-lg hover:bg-[#92df96] transition duration-300"
                 >

@@ -14,7 +14,7 @@ const AllCard = ({fund}) => {
           <div className="card-body items-center text-center">
             <h2 className="card-title">{title}</h2>
             <p>{description}</p>
-            <p><span className='font-semibold'>Amount:</span> {minDonation}tk</p>
+            <p><span className='font-semibold'>Amount:</span> {minDonation}</p>
             <div className="card-actions mt-5">
               <Link to={`/details/${_id}`}>
                 <button className="btn btn-primary">See More</button>

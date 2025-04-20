@@ -12,6 +12,7 @@ import SignUp from "../Components/SignUp/SignUp";
 import SignIn from "../Components/SignIn/SignIn";
 import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
 import Update from "../Components/Update/Update";
+import OnlinePayment from "../Components/OnlinePayment/OnlinePayment";
 
 
 const router = createBrowserRouter([
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
         path: "/update/:id",
         element: <Update></Update>,
         loader: ({params}) => fetch(`https://crowd-funding-server-kappa.vercel.app/myfunds/${params.id}`)
+      },
+      {
+        path:"/onlinePayment",
+        element: <OnlinePayment></OnlinePayment>
       }
       
     ],

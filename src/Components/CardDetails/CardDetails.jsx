@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Bounce, Slide } from "react-awesome-reveal";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
@@ -8,11 +8,10 @@ const CardDetails = () => {
   const data = useLoaderData();
 
   const { user } = useContext(AuthContext);
-  const [deadline, setDeadline] = useState(new Date (data.deadline));
-  
-const currentDate = new Date (new Date ().toDateString())
-// console.log(currentDate);
+  const [deadline, setDeadline] = useState(new Date(data.deadline));
 
+  const currentDate = new Date(new Date().toDateString());
+  // console.log(currentDate);
 
   const handleDonate = () => {
     const newDonation = {
@@ -23,7 +22,6 @@ const currentDate = new Date (new Date ().toDateString())
       amount: data.minDonation,
       image: data.thumbnail,
     };
-    
 
     fetch("https://crowd-funding-server-kappa.vercel.app/donation", {
       method: "POST",
@@ -37,15 +35,13 @@ const currentDate = new Date (new Date ().toDateString())
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
-            text: "User Added Successfully",
+            text: "Donation Successful",
             icon: "success",
             confirmButtonText: "Cool",
           });
         }
       });
   };
-
- 
 
   return (
     <>
@@ -68,12 +64,18 @@ const currentDate = new Date (new Date ().toDateString())
           <h1 className="w-96 mx-auto mt-5">Description: {data.description}</h1>
           <h1 className="mt-5">DeadLine: {data.deadline}</h1>
           <h1>Email: {data.email}</h1>
-          <h1>Amount: {data.minDonation}</h1>
+          <h1>Quantity: {data.minDonation}</h1>
           <h1>Type: {data.type}</h1>
 
-          <button onClick={handleDonate} disabled={currentDate>=deadline} className="btn mt-5 bg-[#2ec4b6]">
-            Donate
-          </button>
+          {/* <Link to='/onlinePayment'> */}
+            <button
+              // onClick={handleDonate}
+              disabled={currentDate >= deadline}
+              className="btn mt-5 bg-[#2ec4b6]"
+            >
+              Donate
+            </button>
+          {/* </Link> */}
         </div>
       </Bounce>
     </>
