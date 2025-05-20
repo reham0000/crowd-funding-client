@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { Bounce, Slide } from "react-awesome-reveal";
 import { Link, useLoaderData } from "react-router-dom";
-import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const CardDetails = () => {
   const data = useLoaderData();
-
+console.log(data);
   const { user } = useContext(AuthContext);
+ 
   const [deadline, setDeadline] = useState(new Date(data.deadline));
 
   const currentDate = new Date(new Date().toDateString());
@@ -32,14 +32,7 @@ const CardDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Success!",
-            text: "Donation Successful",
-            icon: "success",
-            confirmButtonText: "Cool",
-          });
-        }
+        console.log(data);
       });
   };
 
@@ -67,15 +60,15 @@ const CardDetails = () => {
           <h1>Quantity: {data.minDonation}</h1>
           <h1>Type: {data.type}</h1>
 
-          {/* <Link to='/onlinePayment'> */}
+          <Link to='/onlinePayment'>
             <button
-              // onClick={handleDonate}
+              onClick={handleDonate}
               disabled={currentDate >= deadline}
               className="btn mt-5 bg-[#2ec4b6]"
             >
               Donate
             </button>
-          {/* </Link> */}
+          </Link>
         </div>
       </Bounce>
     </>

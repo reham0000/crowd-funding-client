@@ -104,7 +104,7 @@ const Navbar = () => {
             <div className="flex items-center gap-5">
               <div>
                 <img
-                  className=" w-14 h-14 rounded-full "
+                  className=" w-14 h-14 mx-auto rounded-full "
                   src={user?.photoURL}
                   alt=""
                 />
@@ -116,7 +116,7 @@ const Navbar = () => {
                   ""
                 )}
               </div>
-              <button onClick={handleLogout}>Logout</button>
+              <button className="font-semibold ml-6" onClick={handleLogout}>Logout</button>
             </div>
           ) : (
             <Link to="/signin">

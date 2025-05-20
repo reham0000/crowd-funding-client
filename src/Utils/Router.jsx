@@ -13,7 +13,8 @@ import SignIn from "../Components/SignIn/SignIn";
 import PrivetRoute from "../Components/PrivetRoute/PrivetRoute";
 import Update from "../Components/Update/Update";
 import OnlinePayment from "../Components/OnlinePayment/OnlinePayment";
-
+import PaymentSuccess from "../Components/PaymentSuccess/PaymentSuccess";
+import PaymentFail from "../Components/PaymentFail/PaymentFail";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("https://crowd-funding-server-kappa.vercel.app/fund"),
+        loader: () =>
+          fetch("https://crowd-funding-server-kappa.vercel.app/fund"),
       },
       {
         path: "/about",
@@ -32,7 +34,8 @@ const router = createBrowserRouter([
       {
         path: "/allcampaign",
         element: <AllCampaign></AllCampaign>,
-        loader: () => fetch("https://crowd-funding-server-kappa.vercel.app/funds"),
+        loader: () =>
+          fetch("https://crowd-funding-server-kappa.vercel.app/funds"),
       },
       {
         path: "/newcampaign",
@@ -49,7 +52,8 @@ const router = createBrowserRouter([
             <MyCampaign></MyCampaign>
           </PrivetRoute>
         ),
-        loader: () => fetch("https://crowd-funding-server-kappa.vercel.app/myfunds"),
+        loader: () =>
+          fetch("https://crowd-funding-server-kappa.vercel.app/myfunds"),
       },
       {
         path: "/mydonation",
@@ -63,7 +67,9 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <CardDetails></CardDetails>,
         loader: ({ params }) =>
-          fetch(`https://crowd-funding-server-kappa.vercel.app/fund/${params.id}`),
+          fetch(
+            `https://crowd-funding-server-kappa.vercel.app/fund/${params.id}`
+          ),
       },
       {
         path: "/signup",
@@ -76,14 +82,24 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <Update></Update>,
-        loader: ({params}) => fetch(`https://crowd-funding-server-kappa.vercel.app/myfunds/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://crowd-funding-server-kappa.vercel.app/myfunds/${params.id}`
+          ),
       },
       {
-        path:"/onlinePayment",
-        element: <OnlinePayment></OnlinePayment>
-      }
-      
+        path: "/onlinePayment",
+        element: <OnlinePayment></OnlinePayment>,
+      },
     ],
+  },
+   {
+    path: "payment/success/:tranId",
+    element: <PaymentSuccess></PaymentSuccess>,
+  },
+   {
+    path: "payment/fail/:tranId",
+    element: <PaymentFail></PaymentFail>,
   },
   {
     path: "*",

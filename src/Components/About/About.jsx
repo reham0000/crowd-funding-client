@@ -2,7 +2,7 @@ import { Slide } from "react-awesome-reveal";
 
 const About = () => {
   return (
-    <section className="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-16">
+    <section id="about" className="bg-gradient-to-r from-purple-600 to-blue-500 text-white py-16">
       <div className="container mx-auto px-6 lg:px-20">
         <div className="text-center">
           <h2 className="text-4xl font-extrabold sm:text-5xl">About Us</h2>

@@ -4,9 +4,8 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const NewCampaign = () => {
+  const { user } = useContext(AuthContext);
 
-  const {user} = useContext(AuthContext);
-  
   const handleAddFund = (event) => {
     event.preventDefault();
 
@@ -31,6 +30,7 @@ const NewCampaign = () => {
       name,
       email,
     };
+    console.log(newFund);
 
     fetch("https://crowd-funding-server-kappa.vercel.app/fund", {
       method: "POST",
@@ -41,7 +41,6 @@ const NewCampaign = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
@@ -123,7 +122,7 @@ const NewCampaign = () => {
               {/* Minimum Donation */}
               <div>
                 <label className="block text-gray-600 font-medium mb-1">
-                  Donation Item 
+                  Donation Item
                 </label>
                 <input
                   // type="number"
@@ -153,8 +152,8 @@ const NewCampaign = () => {
                 <input
                   type="email"
                   name="email"
-                    value={user.email}
-                    readOnly
+                  value={user.email}
+                  readOnly
                   className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor"
                 />
               </div>
@@ -166,8 +165,8 @@ const NewCampaign = () => {
                 <input
                   type="text"
                   name="name"
-                    value={user.displayName}
-                    readOnly
+                  value={user.displayName}
+                  readOnly
                   className="w-full px-4 py-2 border rounded-lg bg-gray-200 cursor"
                 />
               </div>
