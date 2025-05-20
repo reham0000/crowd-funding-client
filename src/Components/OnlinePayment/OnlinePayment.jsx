@@ -47,19 +47,8 @@ const OnlinePayment = () => {
   };
 
   return (
-    <div>
-      {/* <Elements stripe={stripePromise}>
-        <h1 className="text-center mt-10 font-bold text-3xl">Payment</h1>
-
-        <div className="pt-10 px-36">
-          <h1 className="text-xl font-semibold mb-5">Bank Payment</h1>
-          <CheckOutForm></CheckOutForm>
-        </div>
-      </Elements> */}
-
-      
+    
       <Slide>
-        
         <div className="min-h-screen  bg-gray-100 flex items-center justify-center px-4">
           <div className="bg-white  shadow-lg rounded-lg w-full max-w-lg p-8">
             <h1 className="text-3xl mb-8 font-bold text-center">Bkash</h1>
@@ -156,7 +145,7 @@ const OnlinePayment = () => {
           </div>
         </div>
       </Slide>
-    </div>
+    
   );
 };
 
