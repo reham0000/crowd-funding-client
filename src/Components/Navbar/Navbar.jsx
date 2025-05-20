@@ -1,9 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/banner logo.jpg";
-import "./Navbar.css";
 import { Bounce } from "react-awesome-reveal";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(AuthContext);
