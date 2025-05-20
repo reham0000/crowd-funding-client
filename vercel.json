@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "build": {
+    "env": {
+
+      "VITE_apiKey" : "AIzaSyCc6y6O5CCym-r_mGWaJ7GQF5oQoHkU21o",
+"VITE_authDomain": "crowd-funding-936c0.firebaseapp.com",
+"VITE_projectId": "crowd-funding-936c0",
+"VITE_storageBucket": "crowd-funding-936c0.firebasestorage.app",
+"VITE_messagingSenderId": "970703990271",
+"VITE_appId": "1:970703990271:web:a61e31dd6977bf98a14bca"
+      
+    }
+  }
+}
