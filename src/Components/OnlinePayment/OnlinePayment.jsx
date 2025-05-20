@@ -1,12 +1,12 @@
 import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 import CheckOutForm from "./CheckOutForm";
 
 import { useContext } from "react";
 import { Slide } from "react-awesome-reveal";
 import { AuthContext } from "../Provider/AuthProvider";
 
-const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
+// const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const OnlinePayment = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
@@ -48,20 +48,20 @@ const OnlinePayment = () => {
 
   return (
     <div>
-      <Elements stripe={stripePromise}>
+      {/* <Elements stripe={stripePromise}>
         <h1 className="text-center mt-10 font-bold text-3xl">Payment</h1>
 
         <div className="pt-10 px-36">
           <h1 className="text-xl font-semibold mb-5">Bank Payment</h1>
           <CheckOutForm></CheckOutForm>
         </div>
-      </Elements>
+      </Elements> */}
 
       
       <Slide>
         
         <div className="min-h-screen  bg-gray-100 flex items-center justify-center px-4">
-          <div className="bg-white mt-16 shadow-lg rounded-lg w-full max-w-lg p-8">
+          <div className="bg-white  shadow-lg rounded-lg w-full max-w-lg p-8">
             <h1 className="text-3xl mb-8 font-bold text-center">Bkash</h1>
             <form onSubmit={onSubmit} className="space-y-4">
               <div>
