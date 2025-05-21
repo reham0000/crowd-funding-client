@@ -32,18 +32,45 @@ const OnlinePayment = () => {
     };
     // console.log(donationAmount);
 
-    fetch("http://localhost:5000/order", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(donationAmount),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        window.location.replace(result.url);
-        console.log(result);
-      });
+  //   fetch("http://localhost:5000/order", {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(donationAmount),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       window.location.replace(result.url);
+  //       console.log(result);
+  //     });
+ fetch("https://crowd-funding-server-kx73.vercel.app/order", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(donationAmount),
+})
+.then(async (res) => {
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.message || "Server error");
+  }
+  return res.json();
+})
+.then((result) => {
+  if (!result.url) {
+    throw new Error("Payment gateway URL not received");
+  }
+  window.location.replace(result.url);
+})
+.catch((err) => {
+  console.error("Fetch failed:", err.message);
+  // ইউজারকে এরর মেসেজ দেখান
+  alert(`Payment initialization failed: ${err.message}`);
+  // অথবা আপনার UI-তে এরর মেসেজ ডিসপ্লে করুন
+});
+
   };
 
   return (
@@ -138,7 +165,7 @@ const OnlinePayment = () => {
                   type="submit"
                   className="w-full bg-[#2ec4b6] text-white font-medium py-2 px-4 rounded-lg hover:bg-[#92df96] transition duration-300"
                 >
-                  Add
+                  Pay
                 </button>
               </div>
             </form>
