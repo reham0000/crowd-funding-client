@@ -1,13 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/banner logo.jpg";
-import { Bounce } from "react-awesome-reveal";
+import { Fade, Slide } from "react-awesome-reveal";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import "./navbar.css";
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(AuthContext);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -19,117 +19,157 @@ const Navbar = () => {
   }, [theme]);
 
   const handleToggle = (e) => {
-    if (e.target.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+    setTheme(e.target.checked ? "dark" : "light");
   };
 
+  const navLinks = [
+    { path: "/", name: "Home" },
+    { path: "/allcampaign", name: "All Campaign" },
+    { path: "/newcampaign", name: "New Campaign" },
+    { path: "/mycampaign", name: "My Campaign" },
+    { path: "/mydonation", name: "My Donations" },
+  ];
+
   return (
-    <>
-      <div className="navbar bg-[#2ec4b6] px-10">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+    <header className="sticky top-0 z-50 shadow-lg bg-gradient-to-r from-[#2ec4b6] to-[#3a86ff]">
+      <div className="container mx-auto px-4 py-3">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Fade triggerOnce delay={100}>
+            <div className="flex items-center space-x-2">
+              <img
+                className="w-16 h-16 rounded-full border-2 border-white shadow-md hover:scale-105 transition-transform"
+                src={logo}
+                alt="Logo"
+              />
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          </Fade>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            <Slide direction="down" triggerOnce cascade damping={0.1} delay={200}>
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  className={({ isActive }) =>
+                    `px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-white/20 transition-all ${
+                      isActive ? "bg-white/10 font-bold" : ""
+                    }`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </Slide>
+          </nav>
+
+          {/* Right Side Controls */}
+          <div className="flex items-center space-x-6">
+            {/* Theme Toggle */}
+            <Fade delay={300}>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={theme === "dark"}
+                  onChange={handleToggle}
+                  className="sr-only peer"
+                />
+                <div className="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-7 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-700"></div>
+                <span className="ml-3 text-sm font-medium text-white">
+                  {theme === "dark" ? "🌙" : "☀️"}
+                </span>
+              </label>
+            </Fade>
+
+            {/* User/Auth Section */}
+            <Fade delay={400}>
+              {user?.email ? (
+                <div className="flex items-center space-x-4">
+                  <div className="group relative">
+                    <img
+                      className="w-10 h-10 rounded-full border-2 border-white cursor-pointer hover:scale-110 transition-transform"
+                      src={user?.photoURL}
+                      alt={user?.displayName}
+                    />
+                    {user?.displayName && (
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-white text-gray-800 text-xs font-semibold rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                        {user?.displayName}
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-2 bg-white text-[#2ec4b6] rounded-md font-semibold hover:bg-gray-100 transition-colors shadow-md hover:shadow-lg"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  to="/signin"
+                  className="px-4 py-2 bg-white text-[#2ec4b6] rounded-md font-semibold hover:bg-gray-100 transition-colors shadow-md hover:shadow-lg"
+                >
+                  Login
+                </Link>
+              )}
+            </Fade>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden text-white focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <NavLink to="/">Home</NavLink>
-
-              <NavLink to="/allcampaign">All Campaign</NavLink>
-
-              <NavLink to="/newcampaign">New Campaign</NavLink>
-
-              <NavLink to="/mycampaign">My Campaign</NavLink>
-
-              <NavLink to="/mydonation">My Donations</NavLink>
-            </ul>
-          </div>
-          <img className="w-24 rounded-full" src={logo} alt="" />
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 flex items-center gap-10 p-5">
-            <Bounce>
-              <NavLink to="/">Home</NavLink>
-
-              <NavLink to="/allcampaign">All Campaign</NavLink>
-
-              <NavLink to="/newcampaign">New Campaign</NavLink>
-
-              <NavLink to="/mycampaign">My Campaign</NavLink>
-
-              <NavLink to="/mydonation">My Donations</NavLink>
-            </Bounce>
-          </ul>
-        </div>
-        <label className="swap swap-rotate ml-20">
-          {/* this hidden checkbox controls the state */}
-          <input onChange={handleToggle} type="checkbox" />
-
-          {/* sun icon */}
-          <svg
-            className="swap-on h-10 w-10 fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
-          </svg>
-
-          {/* moon icon */}
-          <svg
-            className="swap-off h-10 w-10 fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
-          </svg>
-        </label>
-        <div className="navbar-end">
-          {user?.email ? (
-            <div className="flex items-center gap-5">
-              <div>
-                <img
-                  className=" w-14 h-14 mx-auto rounded-full "
-                  src={user?.photoURL}
-                  alt=""
-                />
-                {user?.photoURL ? (
-                  <p className="text-center font-semibold ">
-                    {user?.displayName}
-                  </p>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  ""
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
-              </div>
-              <button className="font-semibold ml-6" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
-          ) : (
-            <Link to="/signin">
-              <button className="btn">Login</button>
-            </Link>
-          )}
+              </svg>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <Slide direction="down" triggerOnce>
+            <div className="lg:hidden mt-4 pb-4 space-y-2">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/20 transition-all ${
+                      isActive ? "bg-white/10 font-bold" : ""
+                    }`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+          </Slide>
+        )}
       </div>
-    </>
+    </header>
   );
 };
 

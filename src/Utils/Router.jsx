@@ -89,7 +89,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/onlinePayment",
-        element: <OnlinePayment></OnlinePayment>,
+        element: <PrivetRoute>
+          <OnlinePayment></OnlinePayment>
+        </PrivetRoute> ,
       },
     ],
   },
