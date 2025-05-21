@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { Slide } from "react-awesome-reveal";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import { useRef } from 'react';
 
 const NewCampaign = () => {
   const { user } = useContext(AuthContext);
+   const formRef = useRef(null);
 
   const handleAddFund = (event) => {
     event.preventDefault();
@@ -31,6 +33,7 @@ const NewCampaign = () => {
       email,
     };
     console.log(newFund);
+    formRef.current.reset();
 
     fetch("https://crowd-funding-server-kappa.vercel.app/fund", {
       method: "POST",
@@ -60,7 +63,7 @@ const NewCampaign = () => {
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
               Add New Campaign
             </h2>
-            <form onSubmit={handleAddFund} className="space-y-4">
+            <form ref={formRef} onSubmit={handleAddFund} className="space-y-4">
               {/* Thumbnail */}
               <div>
                 <label className="block text-gray-600 font-medium mb-1">
@@ -122,10 +125,10 @@ const NewCampaign = () => {
               {/* Minimum Donation */}
               <div>
                 <label className="block text-gray-600 font-medium mb-1">
-                  Donation Item
+                  Donation Amount
                 </label>
                 <input
-                  // type="number"
+                  type="number"
                   name="minDonation"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   placeholder="Enter donation Item"

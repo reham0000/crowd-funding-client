@@ -1,16 +1,19 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Bounce } from "react-awesome-reveal";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import google from "../../assets/icons8-google-logo-48.png";
 import Swal from "sweetalert2";
+// import { useNavigate } from 'react-router-dom';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
-  const { handleGoogleLogin, handleSignin, user } = useContext(AuthContext);
+  const { handleSignin, user } = useContext(AuthContext);
   const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
- 
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,15 +23,13 @@ const SignIn = () => {
 
     handleSignin(email, password)
       .then((res) => {
-        
         if (res.user) {
           Swal.fire({
             title: "Good job!",
             text: "Login Successful!",
             icon: "success",
           });
-          navigate(location.state?.from || '/');
-          
+          navigate(location.state?.from || "/");
         }
       })
       .catch((error) => {
@@ -36,12 +37,16 @@ const SignIn = () => {
       });
   };
 
-  // const googleLogin = () => {
-  //   handleGoogleLogin()
-  //   .then(res => {
-  //     navigate (location.state.from)
-  //   })
-  // }
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Problem found in login", error);
+    }
+  };
 
   return (
     <>
@@ -97,7 +102,7 @@ const SignIn = () => {
                 onClick={handleGoogleLogin}
                 className="bg-transparent  gap-5  mt-[-10px]"
               >
-                <img className="w-10 mx-auto" src={google} alt="" />
+                <img className="w-10 mt-6 mx-auto" src={google} alt="" />
               </button>
               {/* <button onClick={handleLogout}>logout</button> */}
             </form>

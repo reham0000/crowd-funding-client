@@ -3,26 +3,28 @@ import logo from "../../assets/banner logo.jpg";
 import { Bounce } from "react-awesome-reveal";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-
+import "./navbar.css";
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(AuthContext);
- 
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme); 
+    document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
   const handleToggle = (e) => {
-    if(e.target.checked) {
+    if (e.target.checked) {
       setTheme("dark");
-    }else {
+    } else {
       setTheme("light");
     }
-  }
+  };
 
   return (
     <>
@@ -110,13 +112,15 @@ const Navbar = () => {
                 />
                 {user?.photoURL ? (
                   <p className="text-center font-semibold ">
-                    {user.displayName}
+                    {user?.displayName}
                   </p>
                 ) : (
                   ""
                 )}
               </div>
-              <button className="font-semibold ml-6" onClick={handleLogout}>Logout</button>
+              <button className="font-semibold ml-6" onClick={handleLogout}>
+                Logout
+              </button>
             </div>
           ) : (
             <Link to="/signin">

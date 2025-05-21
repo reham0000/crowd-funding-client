@@ -22,7 +22,7 @@ const AllCampaign = () => {
         </h1>
         <p
           onClick={sortByAmount}
-          className=" mt-10 cursor-pointer mb-10 bg-[#2ec4b6] text-xl font-semibold mx-auto p-4 text-center rounded-2xl"
+          className=" mt-10 cursor-pointer mb-14 bg-[#2ec4b6] text-xl font-semibold mx-auto p-4 text-center rounded-2xl"
         >
           Sort
         </p>

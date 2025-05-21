@@ -54,11 +54,10 @@ console.log(data);
             src={data.thumbnail}
             alt=""
           />
-          <h1 className="w-96 mx-auto mt-5">Description: {data.description}</h1>
-          <h1 className="mt-5">DeadLine: {data.deadline}</h1>
-          <h1>Email: {data.email}</h1>
-          <h1>Quantity: {data.minDonation}</h1>
-          <h1>Type: {data.type}</h1>
+          <h1 className="w-96 mx-auto mt-5">Description: {data?.description}</h1>
+          <h1 className="mt-5">DeadLine: {data?.deadline}</h1>
+          <h1>Email: {data?.email}</h1>
+          <h1>Amount: {data?.minDonation}</h1>
 
           <Link to='/onlinePayment'>
             <button
