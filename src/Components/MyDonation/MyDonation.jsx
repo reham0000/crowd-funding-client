@@ -11,7 +11,7 @@ const MyDonation = () => {
   const singleUser = data.filter((d) => d?.email == user?.email);
 
   useEffect(() => {
-    fetch("https://crowd-funding-server-kappa.vercel.app/donation", {
+    fetch("https://crowd-funding-server-kx73.vercel.app/donation", {
       method: "GET",
     })
       .then((res) => res.json())

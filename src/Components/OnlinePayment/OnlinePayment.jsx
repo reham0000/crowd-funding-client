@@ -9,7 +9,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 // const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const OnlinePayment = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -30,7 +30,7 @@ const OnlinePayment = () => {
       email,
       id,
     };
-    console.log(donationAmount);
+    // console.log(donationAmount);
 
     fetch("http://localhost:5000/order", {
       method: "POST",

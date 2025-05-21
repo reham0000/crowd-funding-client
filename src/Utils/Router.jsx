@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: () =>
-          fetch("https://crowd-funding-server-kappa.vercel.app/fund"),
+          fetch("https://crowd-funding-server-kx73.vercel.app/fund"),
       },
       {
         path: "/about",
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         path: "/allcampaign",
         element: <AllCampaign></AllCampaign>,
         loader: () =>
-          fetch("https://crowd-funding-server-kappa.vercel.app/funds"),
+          fetch("https://crowd-funding-server-kx73.vercel.app/funds"),
       },
       {
         path: "/newcampaign",
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: () =>
-          fetch("https://crowd-funding-server-kappa.vercel.app/myfunds"),
+          fetch("https://crowd-funding-server-kx73.vercel.app/myfunds"),
       },
       {
         path: "/mydonation",
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
         element: <CardDetails></CardDetails>,
         loader: ({ params }) =>
           fetch(
-            `https://crowd-funding-server-kappa.vercel.app/fund/${params.id}`
+            `https://crowd-funding-server-kx73.vercel.app/fund/${params.id}`
           ),
       },
       {
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
         element: <Update></Update>,
         loader: ({ params }) =>
           fetch(
-            `https://crowd-funding-server-kappa.vercel.app/myfunds/${params.id}`
+            `https://crowd-funding-server-kx73.vercel.app/myfunds/${params.id}`
           ),
       },
       {

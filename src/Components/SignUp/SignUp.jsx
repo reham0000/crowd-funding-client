@@ -41,7 +41,7 @@ const SignUp = () => {
         manageProfile(name, photo)
 
         const newUser = {name, email, photo}
-        fetch('https://crowd-funding-server-kappa.vercel.app/users',{
+        fetch('https://crowd-funding-server-kx73.vercel.app/users',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -58,7 +58,7 @@ const SignUp = () => {
           });
     })
     .catch(error => {
-        console.log('error', error);
+        // console.log('error', error);
     })
   };
 

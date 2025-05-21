@@ -32,10 +32,10 @@ const NewCampaign = () => {
       name,
       email,
     };
-    console.log(newFund);
+    // console.log(newFund);
     formRef.current.reset();
 
-    fetch("https://crowd-funding-server-kappa.vercel.app/fund", {
+    fetch("https://crowd-funding-server-kx73.vercel.app/fund", {
       method: "POST",
       headers: {
         "content-type": "application/json",

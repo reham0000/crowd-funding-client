@@ -38,7 +38,7 @@ const Update = () => {
         email,
       };
   
-      fetch(`https://crowd-funding-server-kappa.vercel.app/myfunds/${_id}`, {
+      fetch(`https://crowd-funding-server-kx73.vercel.app/myfunds/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

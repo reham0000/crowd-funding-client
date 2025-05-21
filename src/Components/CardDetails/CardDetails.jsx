@@ -5,7 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const CardDetails = () => {
   const data = useLoaderData();
-console.log(data);
+// console.log(data);
   const { user } = useContext(AuthContext);
  
   const [deadline, setDeadline] = useState(new Date(data.deadline));
@@ -23,7 +23,7 @@ console.log(data);
       image: data.thumbnail,
     };
 
-    fetch("https://crowd-funding-server-kappa.vercel.app/donation", {
+    fetch("https://crowd-funding-server-kx73.vercel.app/donation", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -32,7 +32,7 @@ console.log(data);
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       });
   };
 
