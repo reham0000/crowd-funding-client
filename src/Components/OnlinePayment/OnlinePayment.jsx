@@ -66,14 +66,14 @@ const OnlinePayment = () => {
 })
 .catch((err) => {
   console.error("Fetch failed:", err.message);
-  // ইউজারকে এরর মেসেজ দেখান
   alert(`Payment initialization failed: ${err.message}`);
-  // অথবা আপনার UI-তে এরর মেসেজ ডিসপ্লে করুন
 });
 
   };
 
   return (
+
+    // onSubmit={onSubmit} this will put on this form section. then payment gateway will work.
     
       <Slide>
         <div className="min-h-screen  bg-gray-100 flex items-center justify-center px-4">

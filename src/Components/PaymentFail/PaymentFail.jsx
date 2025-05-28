@@ -61,13 +61,13 @@ const PaymentFail = () => {
                         className="text-4xl font-extrabold text-gray-900 mb-2"
                         variants={itemVariants}
                     >
-                        Payment Failed
+                        Donation Failed
                     </motion.h1>
                     <motion.p
                         className="text-lg text-gray-600 font-semibold mb-8"
                         variants={itemVariants}
                     >
-                        We couldn't process your payment
+                        We couldn't process your donation
                     </motion.p>
                 </motion.div>
 
@@ -86,7 +86,7 @@ const PaymentFail = () => {
                         <div className="flex items-start mb-4">
                             <FaExclamationTriangle className="text-yellow-500 mt-1 mr-2 flex-shrink-0" />
                             <div>
-                                <p className="font-medium">Payment declined</p>
+                                <p className="font-medium">Donation declined</p>
                                 <p className="text-sm text-gray-600">Your transaction was not completed successfully.</p>
                             </div>
                         </div>
@@ -178,7 +178,7 @@ const PaymentFail = () => {
                     className="mt-8 text-center text-sm text-gray-500"
                     variants={itemVariants}
                 >
-                    <p>Need immediate assistance? Call us at <span className="text-red-600">1-800-HELP-NOW</span></p>
+                    <p>Need immediate assistance? Call us at <span className="text-red-600">+8801904617354</span></p>
                 </motion.div>
             </div>
         </motion.div>
