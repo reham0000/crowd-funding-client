@@ -122,7 +122,7 @@ const SignUp = () => {
                 />
                 <label className="label">
                   <Link to='/signin' href="#" className="label-text-alt link link-hover">
-                    Alreadu have an account? please <span className="text-red-500">Login</span>
+                    Already have an account? please <span className="text-red-500">Login</span>
                   </Link>
                 </label>
               </div>
