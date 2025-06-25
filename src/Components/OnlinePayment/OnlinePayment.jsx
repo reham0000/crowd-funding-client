@@ -101,7 +101,7 @@ const OnlinePayment = () => {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 required
               >
-                <option value="cash">Cash</option>
+                <option value="cash">Online Payment</option>
               </select>
             </div>
             {/* Description */}
